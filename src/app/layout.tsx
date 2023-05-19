@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
-import { Chat } from "./_components/Chat";
 import "./globals.css";
 import { Inter } from "next/font/google";
+import { Chat } from "@/components/Chat";
 
 const inter = Inter({ subsets: ["latin"] });
 
