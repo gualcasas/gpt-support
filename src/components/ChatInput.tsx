@@ -16,16 +16,22 @@ export const ChatInput = ({ className, ...props }: Props) => {
         mutationFn: async (message: Message) => {
             const response = await fetch("/api/message", {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ messages: "hello" }),
+                body: JSON.stringify({ messages: [message] }),
             });
 
-            return response.body;
+            return response;
         },
-        onSuccess: () => {
-            console.log("success");
+        onSuccess: async (response) => {
+            if (!response.body) throw new Error("No stream present");
+            const reader = response.body.getReader();
+            const decoder = new TextDecoder();
+
+            while (true) {
+                const { value, done } = await reader.read();
+                const chunkValue = decoder.decode(value);
+                console.log(chunkValue);
+                if (done) return;
+            }
         },
     });
 
