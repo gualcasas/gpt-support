@@ -57,7 +57,7 @@ export const ChatInput = ({ className, ...props }: Props) => {
                     maxRows={4}
                     autoFocus
                     placeholder="Write a message..."
-                    className="peer disabled:opacity-50 pr-14 resize-none block w-full border-0 bg-zinc-100 py-1.5 text-gray-900 focus:ring-0 text-sm sm:leading-6"
+                    className="peer block w-full resize-none border-0 bg-zinc-100 py-1.5 pr-14 text-sm text-gray-900 focus:ring-0 disabled:opacity-50 sm:leading-6"
                 />
             </div>
         </div>

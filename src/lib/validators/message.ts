@@ -9,4 +9,4 @@ export const MessageSchema = z.object({
 // array validator
 export const MessageArraySchema = z.array(MessageSchema);
 
-export type Message = z.infer<typeof MessageSchema>
+export type Message = z.infer<typeof MessageSchema>;
