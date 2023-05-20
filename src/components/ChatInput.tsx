@@ -1,13 +1,14 @@
 "use client";
 
-import { HTMLAttributes, useState } from "react";
+import type { HTMLAttributes } from "react";
+import { useState } from "react";
 import { cn } from "@/lib/utils";
 import TextareaAutosize from "react-textarea-autosize";
 import { useMutation } from "@tanstack/react-query";
 import { nanoid } from "nanoid";
-import { Message } from "@/lib/validators/message";
+import type { Message } from "@/lib/validators/message";
 
-type Props = HTMLAttributes<HTMLDivElement> & {};
+type Props = HTMLAttributes<HTMLDivElement>;
 
 export const ChatInput = ({ className, ...props }: Props) => {
     const [input, setInput] = useState<string>("");

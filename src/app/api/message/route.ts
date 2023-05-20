@@ -1,10 +1,12 @@
 import { chatbotPrompt } from "@/lib/chatbot-prompt";
-import { CreateChatCompletionRequest } from "openai";
+// import { CreateChatCompletionRequest } from "openai";
 import { MessageArraySchema } from "@/lib/validators/message";
 import { OpenAI } from "openai-streams";
-import { NextRequest } from "next/server";
+import type { CreateChatCompletionRequest } from "openai-streams";
+import type { NextRequest } from "next/server";
 
 export async function POST(req: NextRequest) {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const { messages } = await req.json();
     const parsedMessages = MessageArraySchema.parse(messages);
 
