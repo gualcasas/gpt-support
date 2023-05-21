@@ -26,7 +26,7 @@ export const MessagesContextProvider = ({
     const [messages, setMessages] = useState<TMessagesContext["messages"]>([
         {
             id: nanoid(),
-            isUserMessage: true,
+            isUserMessage: false,
             text: "Hello, how can I help you?",
         },
     ]);

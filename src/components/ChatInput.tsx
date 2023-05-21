@@ -23,21 +23,21 @@ export const ChatInput = ({ className, ...props }: Props) => {
                 method: "POST",
                 body: JSON.stringify({ messages: [...messages, userMessage] }),
             });
-
-            addMessage(userMessage);
             return response;
+        },
+        onMutate: (userMessage: Message) => {
+            addMessage(userMessage);
+            setInput("");
         },
         onSuccess: async (response) => {
             if (!response.body) throw new Error("No stream present");
-
-            setInput("");
+            if (!response.ok) throw new Error("Error in request");
 
             const gptMessage: Message = {
                 id: nanoid(),
                 text: "",
                 isUserMessage: false,
             };
-
             addMessage(gptMessage);
 
             const reader = response.body.getReader();
