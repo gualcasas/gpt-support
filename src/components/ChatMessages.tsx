@@ -10,17 +10,17 @@ type Props = HTMLAttributes<HTMLDivElement>;
 
 export const ChatMessages = ({ className, ...props }: Props) => {
     const { messages } = useContext(MessagesContext);
-    // const inverseMessages = useMemo(() => [...messages].reverse(), [messages]);
+    const inverseMessages = useMemo(() => [...messages].reverse(), [messages]);
 
     return (
         <div
             {...props}
             className={cn(
-                "scrollbar-w-2 flex flex-col gap-y-3 overflow-y-auto scrollbar scrollbar-track-blue-200 scrollbar-thumb-blue-500",
+                "scrollbar-w-2 flex flex-col-reverse gap-y-3 overflow-y-auto scrollbar scrollbar-track-blue-200 scrollbar-thumb-blue-500",
                 className
             )}
         >
-            {messages.map((message) => (
+            {inverseMessages.map((message) => (
                 <div
                     key={message.id}
                     className={cn(

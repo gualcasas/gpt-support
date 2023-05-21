@@ -6,20 +6,16 @@ import { createContext, useCallback, useState } from "react";
 
 type TMessagesContext = {
     messages: Message[];
-    isMessageUpdating: boolean;
     addMessage: (message: Message) => void;
     removeMessage: (id: string) => void;
     updateMessage: (id: string, updateFn: (prevText: string) => string) => void;
-    setIsMessageUpdating: (isUpdating: boolean) => void;
 };
 
 export const MessagesContext = createContext<TMessagesContext>({
     messages: [],
-    isMessageUpdating: false,
     addMessage: () => null,
     removeMessage: () => null,
     updateMessage: () => null,
-    setIsMessageUpdating: () => null,
 });
 
 export const MessagesContextProvider = ({
@@ -27,76 +23,10 @@ export const MessagesContextProvider = ({
 }: {
     children: React.ReactNode;
 }) => {
-    const [isMessageUpdating, setIsMessageUpdating] = useState<boolean>(false);
     const [messages, setMessages] = useState<TMessagesContext["messages"]>([
         {
             id: nanoid(),
             isUserMessage: true,
-            text: "Hello, how can I help you? asldjkñfha aslkdfj asñldkfj aslñdkfjasdlñkfjas dñlfkasjd flñkasjd f",
-        },
-        {
-            id: nanoid(),
-            isUserMessage: false,
-            text: "Hello, how can I help you?",
-        },
-        {
-            id: nanoid(),
-            isUserMessage: true,
-            text: "Hello, how can I help you?",
-        },
-        {
-            id: nanoid(),
-            isUserMessage: false,
-            text: "Hello, how can I help you?",
-        },
-        {
-            id: nanoid(),
-            isUserMessage: true,
-            text: "Hello, how can I help you?",
-        },
-        {
-            id: nanoid(),
-            isUserMessage: false,
-            text: "Hello, how can I help you?",
-        },
-        {
-            id: nanoid(),
-            isUserMessage: true,
-            text: "Hello, how can I help you?",
-        },
-        {
-            id: nanoid(),
-            isUserMessage: false,
-            text: "Hello, how can I help you?",
-        },
-        {
-            id: nanoid(),
-            isUserMessage: true,
-            text: "Hello, how can I help you?",
-        },
-        {
-            id: nanoid(),
-            isUserMessage: false,
-            text: "Hello, how can I help you?",
-        },
-        {
-            id: nanoid(),
-            isUserMessage: true,
-            text: "Hello, how can I help you?",
-        },
-        {
-            id: nanoid(),
-            isUserMessage: false,
-            text: "Hello, how can I help you?",
-        },
-        {
-            id: nanoid(),
-            isUserMessage: true,
-            text: "Hello, how can I help you?",
-        },
-        {
-            id: nanoid(),
-            isUserMessage: false,
             text: "Hello, how can I help you?",
         },
     ]);
@@ -136,11 +66,9 @@ export const MessagesContextProvider = ({
         <MessagesContext.Provider
             value={{
                 messages,
-                isMessageUpdating,
                 addMessage,
                 removeMessage,
                 updateMessage,
-                setIsMessageUpdating,
             }}
         >
             {children}
