@@ -8,6 +8,7 @@ import { useMutation } from "@tanstack/react-query";
 import { nanoid } from "nanoid";
 import type { Message } from "@/lib/validators/message";
 import { MessagesContext } from "@/context/messages";
+import { CornerDownLeft, Loader2 } from "lucide-react";
 
 type Props = HTMLAttributes<HTMLDivElement>;
 
@@ -23,6 +24,7 @@ export const ChatInput = ({ className, ...props }: Props) => {
                 method: "POST",
                 body: JSON.stringify({ messages: [...messages, userMessage] }),
             });
+            if (!response.ok) throw new Error("Error in request");
             return response;
         },
         onMutate: (userMessage: Message) => {
@@ -31,7 +33,6 @@ export const ChatInput = ({ className, ...props }: Props) => {
         },
         onSuccess: async (response) => {
             if (!response.body) throw new Error("No stream present");
-            if (!response.ok) throw new Error("Error in request");
 
             const gptMessage: Message = {
                 id: nanoid(),
@@ -60,6 +61,7 @@ export const ChatInput = ({ className, ...props }: Props) => {
         onError: (error, userMessage) => {
             console.log(JSON.stringify(error));
             removeMessage(userMessage.id);
+            setInput(userMessage.text);
         },
     });
 
@@ -86,8 +88,17 @@ export const ChatInput = ({ className, ...props }: Props) => {
                     maxRows={4}
                     autoFocus
                     placeholder="Write a message..."
-                    className="peer block w-full resize-none border-0 bg-zinc-100 py-1.5 pr-14 text-sm text-gray-900 focus:ring-0 disabled:opacity-50 sm:leading-6"
+                    className="peer block w-full resize-none border-0 bg-zinc-100 py-1.5 pr-14 text-sm text-gray-900 focus:border-b-2 focus:border-b-indigo-600 focus:ring-0 disabled:opacity-50 sm:leading-6"
                 />
+                <div className="absolute inset-y-0 right-2 flex items-center py-1.5">
+                    <kbd className="rounded border border-gray-400 bg-white px-1 text-gray-500">
+                        {isLoading ? (
+                            <Loader2 className="h-4 w-4 animate-spin" />
+                        ) : (
+                            <CornerDownLeft className="h-4 w-4" />
+                        )}
+                    </kbd>
+                </div>
             </div>
         </div>
     );
