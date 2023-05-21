@@ -7,6 +7,7 @@ import {
 import { ChatHeader } from "./ChatHeader";
 import { ChatInput } from "./ChatInput";
 import { ChatMessages } from "./ChatMessages";
+import { MessagesContextProvider } from "@/context/messages";
 
 export const Chat = () => {
     return (
@@ -22,10 +23,12 @@ export const Chat = () => {
                             <ChatHeader />
                         </AccordionTrigger>
                         <AccordionContent>
-                            <div className="flex h-80 flex-col">
-                                <ChatMessages className="flex-1 px-2 py-3" />
-                                <ChatInput className="px-4" />
-                            </div>
+                            <MessagesContextProvider>
+                                <div className="flex h-80 flex-col">
+                                    <ChatMessages className="flex-1 px-2 py-3" />
+                                    <ChatInput className="px-4" />
+                                </div>
+                            </MessagesContextProvider>
                         </AccordionContent>
                     </div>
                 </div>

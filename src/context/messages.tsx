@@ -1,3 +1,5 @@
+"use client";
+
 import type { Message } from "@/lib/validators/message";
 import { nanoid } from "nanoid";
 import { createContext, useCallback, useState } from "react";
@@ -27,6 +29,71 @@ export const MessagesContextProvider = ({
 }) => {
     const [isMessageUpdating, setIsMessageUpdating] = useState<boolean>(false);
     const [messages, setMessages] = useState<TMessagesContext["messages"]>([
+        {
+            id: nanoid(),
+            isUserMessage: true,
+            text: "Hello, how can I help you? asldjkñfha aslkdfj asñldkfj aslñdkfjasdlñkfjas dñlfkasjd flñkasjd f",
+        },
+        {
+            id: nanoid(),
+            isUserMessage: false,
+            text: "Hello, how can I help you?",
+        },
+        {
+            id: nanoid(),
+            isUserMessage: true,
+            text: "Hello, how can I help you?",
+        },
+        {
+            id: nanoid(),
+            isUserMessage: false,
+            text: "Hello, how can I help you?",
+        },
+        {
+            id: nanoid(),
+            isUserMessage: true,
+            text: "Hello, how can I help you?",
+        },
+        {
+            id: nanoid(),
+            isUserMessage: false,
+            text: "Hello, how can I help you?",
+        },
+        {
+            id: nanoid(),
+            isUserMessage: true,
+            text: "Hello, how can I help you?",
+        },
+        {
+            id: nanoid(),
+            isUserMessage: false,
+            text: "Hello, how can I help you?",
+        },
+        {
+            id: nanoid(),
+            isUserMessage: true,
+            text: "Hello, how can I help you?",
+        },
+        {
+            id: nanoid(),
+            isUserMessage: false,
+            text: "Hello, how can I help you?",
+        },
+        {
+            id: nanoid(),
+            isUserMessage: true,
+            text: "Hello, how can I help you?",
+        },
+        {
+            id: nanoid(),
+            isUserMessage: false,
+            text: "Hello, how can I help you?",
+        },
+        {
+            id: nanoid(),
+            isUserMessage: true,
+            text: "Hello, how can I help you?",
+        },
         {
             id: nanoid(),
             isUserMessage: false,
