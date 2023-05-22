@@ -16,7 +16,7 @@ export const ChatMessages = ({ className, ...props }: Props) => {
         <div
             {...props}
             className={cn(
-                "scrollbar-w-2 flex flex-col-reverse gap-y-3 overflow-y-auto scrollbar scrollbar-track-blue-200 scrollbar-thumb-blue-500",
+                "flex flex-col-reverse gap-y-3 overflow-y-auto scrollbar scrollbar-track-blue-200 scrollbar-thumb-blue-500 scrollbar-thumb-rounded scrollbar-w-2",
                 className
             )}
         >
@@ -33,7 +33,7 @@ export const ChatMessages = ({ className, ...props }: Props) => {
                         }
                     )}
                 >
-                    <p className="p-2">
+                    <p className="px-2 py-1">
                         <MarkdownLite text={message.text} />
                     </p>
                 </div>

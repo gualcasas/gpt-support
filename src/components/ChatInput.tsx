@@ -53,15 +53,15 @@ export const ChatInput = ({ className, ...props }: Props) => {
                 );
                 if (done) break;
             }
-
+        },
+        onError: (_error, userMessage) => {
+            removeMessage(userMessage.id);
+            setInput(userMessage.text);
+        },
+        onSettled: () => {
             setTimeout(() => {
                 textareaRef.current?.focus();
             }, 50);
-        },
-        onError: (error, userMessage) => {
-            console.log(JSON.stringify(error));
-            removeMessage(userMessage.id);
-            setInput(userMessage.text);
         },
     });
 

@@ -1,9 +1,9 @@
 import { chatbotPrompt } from "@/lib/chatbot-prompt";
-// import { CreateChatCompletionRequest } from "openai";
 import { MessageArraySchema } from "@/lib/validators/message";
 import { OpenAI } from "openai-streams";
 import type { CreateChatCompletionRequest } from "openai-streams";
 import type { NextRequest } from "next/server";
+import { OPENAI_API_KEY } from "@/envVars";
 
 export async function POST(req: NextRequest) {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
         n: 1,
     };
 
-    const stream = await OpenAI("chat", payload);
+    const stream = await OpenAI("chat", payload, { apiKey: OPENAI_API_KEY });
 
     return new Response(stream);
 }
