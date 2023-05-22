@@ -1,7 +1,0 @@
-name: sample-dockerfile
-services:
-  - name: web
-    git:
-      repo_clone_url: https://github.com/gualcasas/gpt-support
-      branch: main
-    dockerfile_path: Dockerfile
